@@ -1,0 +1,934 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "DeusIncarnation";
+}
+
+<main>
+	<!-- Галерея с превьюшками фильмов -->
+	<div class="gallary-conteiner">
+		<div class="gallary" id="gallary"></div>
+		<div class="arrows">
+			<div class="arrow-transition">
+				<svg width="17" height="36" viewBox="0 0 17 36" alt="arrow1" fill="none" xmlns="http://www.w3.org/2000/svg" data-tid="Arrow"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5001 17.9998L16.6001 3.1998L13.4001 0.799805L0.500097 17.9998L13.4001 35.1998L16.6001 32.7998L5.5001 17.9998Z" fill="white"></path></svg>
+			</div>
+			<div class="arrow-transition">
+				<svg width="17" height="36" viewBox="0 0 17 36" alt="arrow2" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5001 17.9998L16.6001 3.1998L13.4001 0.799805L0.500097 17.9998L13.4001 35.1998L16.6001 32.7998L5.5001 17.9998Z" fill="white"></path></svg>
+			</div>
+		</div>
+		<div class="info-film">
+			<h1 class="style-text-description-name" style="text-align: center;" id="title">Области тьмы</h1>
+			<p class="style-text-description p-limit" id="mark_and_genres">
+			</p>
+			<p class="style-text-description p-limit" style="font-size: 16px;" id="time">
+			</p>
+			<p class="style-text-description p-limit" id="description">Чудодейственные таблетки выводят писателя из кризиса.Триллеро том, что сверхсила не обходится без побочек</p>
+			<div class="relative-position">
+				<button class="style-button-desc">
+					<svg width="1.2rem" height="1.2rem" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff" data-tid="PlayIcon"><path d="M21 12.5L5 21.5L5 3.5L21 12.5Z" fill="white"></path></svg>
+					Смотреть фильм
+				</button>
+				<button class="style-button-desc">
+					<svg width="1.6rem" height="1.6rem" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFF" data-tid="Bookmark"><path fill-rule="evenodd" clip-rule="evenodd" d="M28.05 13.5V9.3h4.575V5.7H28.05V1.125h-3.6V5.7h-4.2v3.6h4.2v4.2h3.6ZM11.475 5.625h4.275v3.6h-4.275v16.353l4.868-2.524 1.657-.86 1.657.86 4.868 2.524V18h3.6v13.5l-3.6-1.867L18 26.25l-6.525 3.383-3.6 1.867V5.625h3.6Z"></path></svg>
+				</button>
+				<button class="style-button-desc">
+					<svg width="1.4rem" height="1.4rem" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFF" data-tid="DotsHorizontal"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 13.1046 6.10457 14 5 14C3.89543 14 3 13.1046 3 12C3 10.8954 3.89543 10 5 10C6.10457 10 7 10.8954 7 12ZM14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12ZM19 14C20.1046 14 21 13.1046 21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14Z"></path></svg>
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- Разделитель контента -->
+	<hr class="hr-divider-main">
+	<div class="all-elements">
+		<div class="navigation-option-block-trends">
+			<ul class="navigation-option-trends style-text-info-description-name categories_1">
+				<li>
+					<div class="gradient-text visible">
+						<i class="fa fa-rocket" aria-hidden="true"></i>
+						Сейчас актуально
+					</div>
+					<p class="p-limit style-dot visible">
+						<i class="fa fa-circle" aria-hidden="true"></i>
+					</p>
+				</li>
+				<li>
+					<div class="gradient-text">
+						<i class="fa fa-fire" aria-hidden="true"></i>
+						Популярное
+					</div>
+					<p class="p-limit style-dot">
+						<i class="fa fa-circle" aria-hidden="true"></i>
+					</p>
+				</li>
+				<li>
+					<div class="gradient-text">
+						<i class="fa fa-bolt" aria-hidden="true"></i>
+						Премьеры и новинки
+					</div>
+					<p class="p-limit style-dot">
+						<i class="fa fa-circle" aria-hidden="true"></i>
+					</p>
+				</li>
+				<li>
+					<div class="gradient-text">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+						Недавно добавленное
+					</div>
+					<p class="p-limit style-dot">
+						<i class="fa fa-circle" aria-hidden="true"></i>
+					</p>
+				</li>
+			</ul>
+		</div>
+		<!-- Контент с жанрами фильмов -->
+		<div class="genres-container">
+			<hr class="hr-divider-genres">
+			<div class="genres">
+				<ul class="genres-container-ul" id="genres1">
+					<li class="genres-list">
+						<a href="#drams" class="style-link">
+							<div class="genres-element">
+								Драмы
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#fantasy" class="style-link">
+							<div class="genres-element">
+								Фэнтези
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#anime" class="style-link">
+							<div class="genres-element">
+								Аниме
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#adventures" class="style-link">
+							<div class="genres-element">
+								Приключения
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#trillers" class="style-link">
+							<div class="genres-element">
+								Триллеры
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#detectives" class="style-link">
+							<div class="genres-element">
+								Детективы
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#comedies" class="style-link">
+							<div class="genres-element">
+								Комедии
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#dorams" class="style-link">
+							<div class="genres-element">
+								Дорамы
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#romance" class="style-link">
+							<div class="genres-element">
+								Романтика
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!-- <ul class="genres-container-ul" id="genres2c">
+				</ul> -->
+			</div>
+			<!-- <div class="arrows-genres">
+					<div class="arrows-genres-hover" id="prev" style="visibility: hidden;">
+						<svg width="17" height="36" viewBox="0 0 17 36" fill="none" xmlns="http://www.w3.org/2000/svg" data-tid="Arrow"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5001 17.9998L16.6001 3.1998L13.4001 0.799805L0.500097 17.9998L13.4001 35.1998L16.6001 32.7998L5.5001 17.9998Z" fill="white"></path></svg>
+					</div>
+					<div class="arrows-genres-hover" id="next">
+						<svg width="17" height="36" viewBox="0 0 17 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5001 17.9998L16.6001 3.1998L13.4001 0.799805L0.500097 17.9998L13.4001 35.1998L16.6001 32.7998L5.5001 17.9998Z" fill="white"></path></svg>
+					</div>
+			</div> -->
+		</div>
+		<div class="gallary films">
+			<div class="film">
+				<img src="films/film1.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Патрик Мелроуз</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2018</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								8.3
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="film">
+				<img src="films/film2.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="film">
+				<img src="films/film3.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="film">
+				<img src="films/film4.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="film">
+				<img src="films/film5.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="film">
+				<img src="films/film6.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="film">
+				<img src="films/film7.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="film">
+				<img src="films/film8.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="film">
+				<img src="films/film9.jfif" class="film-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<hr class="hr-divider-genres">
+
+
+		<div class="navigation-option-block-trends categories_2">
+			<ul class="navigation-option-trends style-text-info-description-name">
+				<li>
+					<div class="gradient-text visible-categories">
+						<i class="fa fa-film" aria-hidden="true"></i>
+						Фильмы
+					</div>
+					<p class="p-limit style-dot visible-categories">
+						<i class="fa fa-circle" aria-hidden="true"></i>
+					</p>
+				</li>
+				<li>
+					<div class="gradient-text">
+						<i class="fa fa-play" aria-hidden="true" style="width: 6px; height: 6px; padding-right: 5px;"></i>
+						Сериалы
+					</div>
+					<p class="p-limit style-dot">
+						<i class="fa fa-circle" aria-hidden="true"></i>
+					</p>
+				</li>
+				<li>
+					<div class="gradient-text">
+						<i class="fa fa-check" aria-hidden="true"></i>
+						Оригинальные сериалы
+					</div>
+					<p class="p-limit style-dot">
+						<i class="fa fa-circle" aria-hidden="true"></i>
+					</p>
+				</li>
+				<li>
+					<div class="gradient-text">
+						<div style="display: flex; align-items: center; justify-content: center;">
+							<i class="fa fa-search" aria-hidden="true" style="padding-right: 10px;"></i>
+							Поиск
+						</div>
+					</div>
+					<p class="p-limit style-dot">
+						<i class="fa fa-circle" aria-hidden="true"></i>
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="genres-container">
+			<hr class="hr-divider-genres">
+			<div class="genres">
+				<ul class="genres-container-ul" id="genres1">
+					<li class="genres-list">
+						<a href="#drams" class="style-link">
+							<div class="genres-element">
+								Драмы
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#fantasy" class="style-link">
+							<div class="genres-element">
+								Фэнтези
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#anime" class="style-link">
+							<div class="genres-element">
+								Аниме
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#adventures" class="style-link">
+							<div class="genres-element">
+								Приключения
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#trillers" class="style-link">
+							<div class="genres-element">
+								Триллеры
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#detectives" class="style-link">
+							<div class="genres-element">
+								Детективы
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#comedies" class="style-link">
+							<div class="genres-element">
+								Комедии
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#dorams" class="style-link">
+							<div class="genres-element">
+								Дорамы
+							</div>
+						</a>
+					</li>
+					<li class="genres-list">
+						<a href="#romance" class="style-link">
+							<div class="genres-element">
+								Романтика
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="sort-option">
+			<ul class="sort-option-list">
+				<li class="sort-option-elements">
+					<span class="style-text-info-description">Сортировать по:</span>
+					<a href="#drams" class="style-link">
+						<div class="option-element">
+							Последнему
+						</div>
+					</a>
+					<a href="#drams" class="style-link">
+						<div class="option-element">
+							Год
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</div>
+					</a>
+					<a href="#drams" class="style-link">
+						<div class="option-element">
+							А-Я
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</div>
+					</a>
+				</li>
+				<li class="sort-option-elements">
+					<i class="fa fa-star" aria-hidden="true" style="scale: 0.8; color: yellow;"></i>
+					<input type="range" id="slider_rating" min="1" max="10" value="5" style="margin: 0 10px;">
+					<span class="style-text-info-description">5.0</span>
+				</li>
+			</ul>
+		</div>
+		<div class="collection series">
+			<div class="serie">
+				<img src="films/film10.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Патрик Мелроуз</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2018</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								8.3
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film11.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film12.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film13.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film14.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film15.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film16.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film17.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film18.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film19.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film20.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film21.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film22.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film23.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film24.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film25.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film26.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film27.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film28.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film29.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film30.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film31.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film32.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serie">
+				<img src="films/film33.jfif" class="serie-position" alt="img1">
+				<div>
+					<p class="style-text-info-description-name film-text">Игра Престолов</p>
+					<div class="film-description style-text" style="font-size: 14px;">
+						<span>2011</span>
+						<div style="display: flex;">
+							<i class="fa fa-heart" aria-hidden="true" style="padding-right: 5px;"></i>
+							<i class="fa fa-eye" aria-hidden="true" style="padding-right: 5px;"></i>
+							<div class="style-mark">
+								<i class="fa fa-star" aria-hidden="true" style="scale: 0.6;"></i>
+								9.5
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Разделитель контента -->
+	<hr class="hr-divider-main">
+	<!-- Блок с информацией о предоставляемых услугах -->
+	<div class="info-conteiner">
+		<div class="info-conteiner-window">
+			<h3 class="style-text-info-description-name">
+				<i class="fa fa-info-circle" aria-hidden="true"></i>
+				О нас
+			</h3>
+			<p class="style-text-info-description p-limit">
+				DeusIncarnation — это платформа для онлайн просмотра фильмов, где зрители могут насладиться разнообразием киноискусства, от вечных классиков до новинок, а также независимыми и документальными лентами. Мы стремимся создать уникальную атмосферу, которая позволит каждому пользователю погрузиться в мир кино, как будто они находятся в уютном кинотеатре.
+			</p>
+		</div>
+		<div class="info-conteiner-window">
+			<h3 class="style-text-info-description-name">
+				<i class="fa fa-check-circle" aria-hidden="true"></i>
+				Качество и доступность
+			</h3>
+			<p class="style-text-info-description p-limit">
+				Предоставление контента в высоком качестве для зрителей, которые ценят визуальные эффекты и детализацию, а также удобный интерфейс для различных устройств, так что пользователи могут наслаждаться кино в любом месте и в любое время.
+			</p>
+		</div>
+		<div class="info-conteiner-window">
+			<h3 class="style-text-info-description-name">
+				<i class="far fa-comments" aria-hidden="true"></i>
+				Сообщество и взаимодействие
+			</h3>
+			<p class="style-text-info-description p-limit">
+				Возможность оставлять отзывы о фильмах и оценивать их, что поможет другим пользователям выбрать что посмотреть, и пространство для общения любителей кино, где можно обсуждать фильмы, делиться мнениями и получать рекомендации.
+			</p>
+		</div>
+	</div>
+
+	<!-- Разделитель контента -->
+	<!-- <hr class="hr-divider-main"> -->
+	<!-- Описание особенностей онлайн кинотеатра -->
+	<!-- <div class="description-features">
+		<h2 class="style-text style-text-info-description-name" style="margin: 0;">В чем состоят наши особенности?</h2>
+		<div class="description-features-items">
+			<p class="style-features-description">
+			Мы предлагаем <span style="font-style: italic; font-weight: bold;">уникальную систему оценивания</span>, которая не только предлагает оценить фильм или сериал после полноценного просмотра, но и внести свой вклад в рекомендации для таких же любителей подобных жанров как и вы! Если вы зачастую увлекаетесь просмотром каких-либо произведений конкретного жанра, то ваш шанс зарекомендовать кино другим пользователям <span style="font-style: italic; font-weight: bold;">имеет значительный вес</span>. Ведь на сайте присутствует как <span style="font-style: italic;">обычная (усредненная) оценка</span>, так и <span style="font-style: italic;">оптимальная</span>, которая высчитывается на основе любителей данного жанра и комментариев к фильму.
+			</p>
+		<img src="Images/mind2.gif" class="style-features-gif" alt="mind-gif">
+		</div>
+	</div> -->
+	<!-- Разделитель контента -->
+	<hr class="hr-divider-main">
+
+	<div class="description-about-authors" style="padding-bottom: 30px">
+		<h2 class="style-text style-text-info-description-name" style="margin: 0;">Об авторе</h2>
+		<div class="description-features-items">
+			<p class="style-features-description features-center">Обычный скромный студент, вдруг решивший почему-то написать прекрасный сайт, который своей красотой привлек бы больше внимания, чем сам автор.</p>
+			<img src="Images/author_icon.png" class="style-features-gif" alt="author-icon">
+		</div>
+	</div>
+</main>
