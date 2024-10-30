@@ -19,7 +19,7 @@ using (var scope = app.Services.CreateScope())
     var movies = await context.Movies.ToListAsync();
     foreach (var movie in movies)
     {
-        Console.WriteLine(movie.title);
+        Console.WriteLine(movie.year);
     }
 }
 

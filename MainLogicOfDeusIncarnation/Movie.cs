@@ -10,6 +10,6 @@ namespace MainLogicOfDeusIncarnation
         public string description { get; set; }
         public string type_video {  get; set; }
         public string genres { get; set; }
-
+        public int year { get; set; }
     }
 }

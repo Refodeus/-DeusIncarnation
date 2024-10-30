@@ -232,7 +232,7 @@
 	.collection.series {
 		overflow: hidden;
 		width: auto;
-		height: 1600px;
+		height: 2000px;
 		padding: 10px 25px 10px;
 		justify-content: start;
 	}
@@ -623,7 +623,12 @@
 		background-color: #007bff;
 		border-color: #007bff;
 		color: white;
+		cursor: pointer;
 	}
+.option-active {
+	background-color: #007bff;
+	border-color: #007bff;
+}
 	#slider_rating {
 		appearance: none;
 		width: 100%;
@@ -645,16 +650,20 @@
 	.style-mark {
 		color: yellow;
 	}
-	/*.gallary.films::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: linear-gradient(to bottom, rgba(20, 20, 20, 0), rgba(25, 25, 25, 1) 30%, rgba(25, 25, 25, 1) 90%, rgba(20, 20, 20, 0));
-		z-index: 0;
-	}*/
+	.style-heart {
+		padding-right: 5px;
+		transition: color 0.5s ease;
+	}
+	.style-heart:hover {
+		color: red;
+	}
+	.style-eye {
+		padding-right: 5px;
+		transition: color 0.5s ease;
+	}
+	.style-eye:hover {
+		color:aquamarine;
+	}
 
 @media (min-width: 2560px) {
 		.arrows {
