@@ -143,6 +143,10 @@ function resetOtherButtons(exceptButton) {
 		ArrayOfSort[index - StartCountList] = sortedDesc[index];
 	}
 }
+function checkSlider() {
+	if (resetSlider.style.visibility === 'visible')
+		return true;
+}
 const sortLast = document.getElementById('sort-last');
 const sortYear = document.getElementById('sort-year');
 const sortChar = document.getElementById('sort-char');
@@ -151,6 +155,8 @@ let sortLastCountTimes = 0;
 let sortYearCountTimes = 0;
 let sortCharCountTimes = 0;
 sortLast.addEventListener('click', () => {
+	if (checkSlider())
+		return;
 	resetOtherButtons(sortLast);
 	interArray = [];
 	sortLast.classList.toggle('option-active');
@@ -167,6 +173,8 @@ sortLast.addEventListener('click', () => {
 	updateFilmsList(interArray, StartCountList);
 });
 sortYear.addEventListener('click', () => {
+	if (checkSlider())
+		return;
 	resetOtherButtons(sortYear);
 	interArray = [];
 	let offset = StartCountList;
@@ -189,6 +197,8 @@ sortYear.addEventListener('click', () => {
 	updateFilmsList(interArray, offset);
 });
 sortChar.addEventListener('click', () => {
+	if (checkSlider())
+		return;
 	resetOtherButtons(sortChar);
 	interArray = [];
 	let offset = StartCountList;
@@ -227,6 +237,7 @@ const resetSlider = document.getElementById("reset_Slider");
 const output = document.getElementById("text-rating");
 function updateSlider() {
 	resetAllButtons();
+	resetSlider.style.visibility = 'visible';
 	const amount = allCountList - StartCountList;
 	let mult = 1;
 	output.textContent = slider.value;
@@ -240,6 +251,7 @@ function updateSlider() {
 }
 slider.addEventListener('input', updateSlider);
 resetSlider.addEventListener('click', () => {
+	resetSlider.style.visibility = 'hidden';
 	output.textContent = 5;
 	slider.value = 5;
 	let mult = 1;

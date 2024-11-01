@@ -664,6 +664,11 @@
 	.style-eye:hover {
 		color:aquamarine;
 	}
+.button-slider-cancel {
+	margin-right: 5px;
+	visibility: hidden;
+	border-radius: 30px;
+}
 
 @media (min-width: 2560px) {
 		.arrows {
