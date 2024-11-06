@@ -9,12 +9,14 @@
   <ItemGroup>
     <Content Remove="Pages\History.cshtml" />
     <Content Remove="Pages\WillBeWatching.cshtml" />
+    <Content Remove="wwwroot\js\operationsWithFilms.js" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Views\ControllerRouting\WillBeWatching.cshtml" />
     <None Include="Views\ControllerRouting\History.cshtml" />
     <None Include="Views\ControllerRouting\Catalog.cshtml" />
+    <None Include="wwwroot\js\operationsWithFilms.js" />
   </ItemGroup>
 
   <ItemGroup>

@@ -232,7 +232,7 @@
 	.collection.series {
 		overflow: hidden;
 		width: auto;
-		height: 2000px;
+		height: 2800px;
 		padding: 10px 25px 10px;
 		justify-content: start;
 	}
@@ -415,29 +415,14 @@
 		padding-left: 3%;
 		min-width: 100vw;
 	}
-	.genres-element {
-		background-color: #191919;
-		font-family: "Courier New", Arial, sans-serif;
-		color: lightgray;
-		letter-spacing: 2px;
-		font-size: 24px;
-		padding: 5px 15px;
-		border-radius: 35px;
-		text-replace: color 0.3s ease;
-		pointer-events: auto;
-		transition: background-color 0.3s ease, color 0.3s ease;
-	}
+	
 	.genres-list {
 		color: white;
 		list-style: none;
 		padding: 3px 20px;
 		scale: 1;
 	}
-	.genres-element:hover {
-		background-color: #007bff;
-		border-color: #007bff;
-		color: white;
-	}
+	
 	.arrows-genres {
 		display: flex;
 		position: absolute;
@@ -625,6 +610,23 @@
 		color: white;
 		cursor: pointer;
 	}
+	.genres-element {
+		background-color: #191919;
+		font-family: "Courier New", Arial, sans-serif;
+		color: lightgray;
+		letter-spacing: 2px;
+		font-size: 24px;
+		border-radius: 35px;
+		text-replace: color 0.3s ease;
+		pointer-events: auto;
+		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+
+	.genres-element:hover {
+		background-color: #007bff;
+		border-color: #007bff;
+		color: white;
+	}
 .option-active {
 	background-color: #007bff;
 	border-color: #007bff;
@@ -664,11 +666,14 @@
 	.style-eye:hover {
 		color:aquamarine;
 	}
-.button-slider-cancel {
-	margin-right: 5px;
-	visibility: hidden;
-	border-radius: 30px;
-}
+	.button-slider-cancel {
+		margin-right: 5px;
+		visibility: hidden;
+		border-radius: 30px;
+	}
+	.button-genre-construct {
+		border-radius: 30px;
+	}
 
 @media (min-width: 2560px) {
 		.arrows {
