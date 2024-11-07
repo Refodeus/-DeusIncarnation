@@ -530,31 +530,18 @@
 		visibility: visible;
 		transform: scale(1.0);
 	}
-	.style-dot.visible-categories {
-		opacity: 1;
-		visibility: visible;
-		transform: scale(1.0);
-	}
 	.all-elements {
 		display: block;
 		padding: 5px;
 	}
 	.gradient-text {
-	    background: none;
-	    -webkit-text-fill-color: none;
-	    transition: background 2.8s ease;
+		display: inline-block;
+		transition: background 2.8s ease;
 	}
 	.gradient-text.visible {
 	    background: linear-gradient(90deg, #ff007f, #590fb7); 
 	    -webkit-background-clip: text; 
 	    -webkit-text-fill-color: transparent;
-	    display: inline-block; 
-	}
-	.gradient-text.visible-categories {
-		background: linear-gradient(90deg, #ff007f, #590fb7); 
-	    -webkit-background-clip: text; 
-	    -webkit-text-fill-color: transparent;
-	    display: inline-block; 
 	}
 	.film-description {
 		display: flex;
@@ -674,6 +661,18 @@
 	.button-genre-construct {
 		border-radius: 30px;
 	}
+.style-button-categories {
+	background-color: #181818;
+	color: ghostwhite;
+	border: 2px;
+	width: 300px;
+	border-radius: 30px;
+	font-family: 'Courier New', sans-serif;
+	font-size: 16px;
+	border-style: bold;
+	text-align: center;
+	cursor: pointer;
+}
 
 @media (min-width: 2560px) {
 		.arrows {

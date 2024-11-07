@@ -80,87 +80,6 @@
 				</li>
 			</ul>
 		</div>
-		<!-- Контент с жанрами фильмов -->
-		@* <div class="genres-container">
-			<hr class="hr-divider-genres">
-			<div class="genres">
-				<ul class="genres-container-ul" id="genres1">
-					<li class="genres-list">
-						<a href="#drams" class="style-link">
-							<div class="genres-element">
-								Драмы
-							</div>
-						</a>
-					</li>
-					<li class="genres-list">
-						<a href="#fantasy" class="style-link">
-							<div class="genres-element">
-								Фэнтези
-							</div>
-						</a>
-					</li>
-					<li class="genres-list">
-						<a href="#anime" class="style-link">
-							<div class="genres-element">
-								Аниме
-							</div>
-						</a>
-					</li>
-					<li class="genres-list">
-						<a href="#adventures" class="style-link">
-							<div class="genres-element">
-								Приключения
-							</div>
-						</a>
-					</li>
-					<li class="genres-list">
-						<a href="#trillers" class="style-link">
-							<div class="genres-element">
-								Триллеры
-							</div>
-						</a>
-					</li>
-					<li class="genres-list">
-						<a href="#detectives" class="style-link">
-							<div class="genres-element">
-								Детективы
-							</div>
-						</a>
-					</li>
-					<li class="genres-list">
-						<a href="#comedies" class="style-link">
-							<div class="genres-element">
-								Комедии
-							</div>
-						</a>
-					</li>
-					<li class="genres-list">
-						<a href="#dorams" class="style-link">
-							<div class="genres-element">
-								Дорамы
-							</div>
-						</a>
-					</li>
-					<li class="genres-list">
-						<a href="#romance" class="style-link">
-							<div class="genres-element">
-								Романтика
-							</div>
-						</a>
-					</li>
-				</ul>
-				<!-- <ul class="genres-container-ul" id="genres2c">
-				</ul> -->
-			</div>
-			<!-- <div class="arrows-genres">
-					<div class="arrows-genres-hover" id="prev" style="visibility: hidden;">
-						<svg width="17" height="36" viewBox="0 0 17 36" fill="none" xmlns="http://www.w3.org/2000/svg" data-tid="Arrow"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5001 17.9998L16.6001 3.1998L13.4001 0.799805L0.500097 17.9998L13.4001 35.1998L16.6001 32.7998L5.5001 17.9998Z" fill="white"></path></svg>
-					</div>
-					<div class="arrows-genres-hover" id="next">
-						<svg width="17" height="36" viewBox="0 0 17 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.5001 17.9998L16.6001 3.1998L13.4001 0.799805L0.500097 17.9998L13.4001 35.1998L16.6001 32.7998L5.5001 17.9998Z" fill="white"></path></svg>
-					</div>
-			</div> -->
-		</div> *@
 		<div class="gallary films">
 			<div class="film">
 				<img src="films/film1.jfif" class="film-position" alt="img1">
@@ -317,25 +236,24 @@
 			</div>
 		</div>
 
-
 		<hr class="hr-divider-genres">
 
 
-		<div class="navigation-option-block-trends categories_2">
-			<ul class="navigation-option-trends style-text-info-description-name">
-				<li>
-					<div class="gradient-text visible-categories">
+		<div class="navigation-option-block-trends">
+			<ul class="navigation-option-trends style-text-info-description-name" id="categories_2">
+				@* <li>
+					<button class="gradient-text visible style-button-categories">
 						<i class="fa fa-film" aria-hidden="true"></i>
-						Фильмы
-					</div>
-					<p class="p-limit style-dot visible-categories">
+						Фильмы и сериалы
+					</button>
+					<p class="p-limit style-dot visible">
 						<i class="fa fa-circle" aria-hidden="true"></i>
 					</p>
 				</li>
 				<li>
 					<div class="gradient-text">
 						<i class="fa fa-play" aria-hidden="true" style="width: 6px; height: 6px; padding-right: 5px;"></i>
-						Сериалы
+						Фильмы
 					</div>
 					<p class="p-limit style-dot">
 						<i class="fa fa-circle" aria-hidden="true"></i>
@@ -344,23 +262,12 @@
 				<li>
 					<div class="gradient-text">
 						<i class="fa fa-check" aria-hidden="true"></i>
-						Оригинальные сериалы
+						Сериалы
 					</div>
 					<p class="p-limit style-dot">
 						<i class="fa fa-circle" aria-hidden="true"></i>
 					</p>
-				</li>
-				<li>
-					<div class="gradient-text">
-						<div style="display: flex; align-items: center; justify-content: center;">
-							<i class="fa fa-search" aria-hidden="true" style="padding-right: 10px;"></i>
-							Поиск
-						</div>
-					</div>
-					<p class="p-limit style-dot">
-						<i class="fa fa-circle" aria-hidden="true"></i>
-					</p>
-				</li>
+				</li> *@
 			</ul>
 		</div>
 		<div class="genres-container">
@@ -397,8 +304,6 @@
 		</div>
 		<div class="collection series" id="allSeries"></div>
 	</div>
-
-
 
 	<!-- Разделитель контента -->
 	<hr class="hr-divider-main">

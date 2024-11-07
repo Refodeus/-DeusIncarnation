@@ -82,4 +82,4 @@ function setupClickEventsCategories(objects, activeClass)
 });
 }
 setupClickEventsCategories('.categories_1 li', 'visible');
-setupClickEventsCategories('.categories_2 li', 'visible-categories');
+setupClickEventsCategories('.categories_2 li', 'visible');

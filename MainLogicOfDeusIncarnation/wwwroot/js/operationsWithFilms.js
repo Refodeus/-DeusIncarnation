@@ -15,6 +15,9 @@
 const genresContainer = document.getElementById("genres2");
 const AllGenres = ["драма", "фэнтези", "фантастика", "приключения", "триллер", "детектив", "комедия", "ужасы", "романтика", "мюзикл", "биография", "криминал", "мистика"];
 const selectedGenres = new Set();
+const AllCategories = ["Фильмы и сериалы", "Фильм", "Сериал"];
+const AllCategoriesWithBigChar = ["Фильмы и сериалы", "Фильмы", "Сериалы"];
+let SelectedCategory = AllCategories[0];
 function handleGenreClick(genre) {
 	const lowerCasedGenre = genre;
 	if (selectedGenres.has(lowerCasedGenre)) {
@@ -24,28 +27,27 @@ function handleGenreClick(genre) {
 	}
 	updateFilteredFilms();
 }
-function FilterMoviesByGenres() {
+function FilterMoviesByGenres(filteredbyCategory) {
 	if (selectedGenres.size === 0) {
-		return sortedDesc;
+		return filteredbyCategory;
 	}
-	return sortedDesc.filter(movie => {
+	return filteredbyCategory.filter(movie => {
 		const genresArray = movie.genres.split(',').map(genre => genre.trim().toLowerCase());
 		return genresArray.some(genre => selectedGenres.has(genre));
 	});
 }
-function updateFilteredFilms() {
-	const filteredMovies = FilterMoviesByGenres();
-	updateFilmsList(filteredMovies, 0, filteredMovies.length, 0);
+function FilterMoviesByCategories() {
+	if (SelectedCategory === AllCategories[0]) {
+		return sortedDesc;
+	}
+	return sortedDesc.filter(movie => { return movie.type_video === SelectedCategory; });
 }
-
-//document.querySelectorAll('.genres-container-ul').forEach((button, index) => {
-//	button.addEventListener('click', () => {
-//		button.classList.toggle('option-active');
-//		const genre = button.innerText.trim().toLowerCase();
-//		console.log(genre);
-//		handleGenreClick(genre);
-//	});
-//});
+function updateFilteredFilms() {
+	const filteredbyCategory = FilterMoviesByCategories();
+	const filteredMovies = FilterMoviesByGenres(filteredbyCategory);
+	let sortedAndFilteredMovies = applySorting(filteredMovies);
+	updateFilmsList(sortedAndFilteredMovies, 0, sortedAndFilteredMovies.length, 0);
+}
 
 function arrangementGenres() {
 	AllGenres.forEach((item, index) => {
@@ -65,9 +67,76 @@ function arrangementGenres() {
 		genresContainer.appendChild(li);
 	});
 }
-
+function handleCategoriesClick(category) {
+	SelectedCategory = category;
+	updateFilteredFilms();
+}
+function arrangementCategories() {
+	const categories = document.getElementById('categories_2');
+	AllCategories.forEach((item, index) => {
+		let li = document.createElement("li");
+		let button = document.createElement("button");
+		let p = document.createElement("p");
+		button.classList.add("gradient-text", "style-button-categories");
+		p.classList.add("p-limit", "style-dot");
+		if (index === 0) {
+			button.classList.add("visible");
+			p.classList.add("visible");
+		}
+		p.innerHTML = `<i class="fa fa-circle" aria-hidden="true"></i>`;
+		button.innerHTML = `<i class="fa fa-film" aria-hidden="true"></i>
+						${AllCategoriesWithBigChar[index]}`;
+		li.addEventListener('click', () => {
+			document.querySelectorAll('.style-dot').forEach(dot => {
+				dot.classList.remove('visible');
+			});
+			document.querySelectorAll('.gradient-text').forEach(grad => {
+				grad.classList.remove('visible');
+			});
+			const dot = li.querySelector('.style-dot');
+			dot.classList.add('visible');
+			const grad = li.querySelector('.gradient-text');
+			grad.classList.add('visible');
+			handleCategoriesClick(item);
+		});
+		li.appendChild(button);
+		li.appendChild(p);
+		categories.appendChild(li);
+	});
+}
 ///////////////////////////////////////////////////
 
+function applySorting(movies) {
+	if (sortLastCountTimes === 0) {
+		return movies.slice().sort((first, second) => second.id - first.id);
+	}
+	if (sortLastCountTimes === 1) {
+		sortLastCountTimes = -1;
+		return movies.slice().sort((first, second) => first.id - second.id);
+	}
+	if (sortYearCountTimes === 1) {
+		return movies.slice().sort((first, second) => first.year - second.year);
+	}
+	if (sortYearCountTimes === 2) {
+		return movies.slice().sort((first, second) => second.year - first.year);
+	}
+	if (sortYearCountTimes === 3) {
+		sortYearCountTimes = -1;
+	}
+	if (sortCharCountTimes === 1) {
+		return movies.slice().sort((first, second) => first.title.localeCompare(second.title, 'ru', { sensitivity: 'base' }));
+	}
+	if (sortCharCountTimes === 2) {
+		return movies.slice().sort((first, second) => second.title.localeCompare(first.title, 'ru', { sensitivity: 'base' }));
+	}
+	if (sortCharCountTimes === 3) {
+		sortCharCountTimes = -1;
+	}
+	if (sortSliderCountTimes > 0) {
+		return movies.filter(item => Math.round(item.averagemark) == slider.value).sort((first, second) => Math.round(first.averagemark) - Math.round(second.averagemark));
+	}
+	return movies;
+}
 function sort(descriptions) {
 	sortedDesc = descriptions.slice().sort((first, second) => first.id - second.id);
 }
@@ -92,6 +161,7 @@ async function fetchMovies() {
 			year: movie.year
 		}));
 		arrangementGenres();
+		arrangementCategories();
 		sort(descriptions);
 		updateFilmsGallery();
 		updateFilteredFilms();
@@ -170,12 +240,12 @@ function resetOtherButtons(exceptButton, start, end) {
 			sortCharCountTimes = 0;
 			break;
 		case sortYear:
-			sortLastCountTimes = 0;
+			sortLastCountTimes = -1;
 			sortCharCountTimes = 0;
 			break;
 		case sortChar:
+			sortLastCountTimes = -1;
 			sortYearCountTimes = 0;
-			sortLastCountTimes = 0;
 			break;
 	}
 	for (let index = start; index < end; index++) {
@@ -190,84 +260,57 @@ const sortLast = document.getElementById('sort-last');
 const sortYear = document.getElementById('sort-year');
 const sortChar = document.getElementById('sort-char');
 
-let sortLastCountTimes = 0;
+let sortLastCountTimes = -1;
 let sortYearCountTimes = 0;
 let sortCharCountTimes = 0;
+let sortSliderCountTimes = 0;
 sortLast.addEventListener('click', () => {
 	if (checkSlider())
 		return;
 	resetOtherButtons(sortLast, 0, allCountList);
 	interArray = [];
 	sortLast.classList.toggle('option-active');
-	const amount = allCountList - StartCountList;
-	for (let index = 0; index < allCountList; index++) {
-		if (sortLastCountTimes === 0)
-			interArray[index] = ArrayOfSort[allCountList - index - 1];
-		else {
-			interArray[index] = ArrayOfSort[index];
-			sortLastCountTimes = -1;
-		}
-	}
 	sortLastCountTimes++;
-	updateFilmsList(interArray, 0, interArray.length, 0);
+	updateFilteredFilms();
 });
 sortYear.addEventListener('click', () => {
 	if (checkSlider())
 		return;
 	resetOtherButtons(sortYear, 0, allCountList);
-	interArray = [];
 	switch (sortYearCountTimes) {
 		case 0:
 			sortYear.classList.toggle('option-active');
-			interArray = ArrayOfSort.slice().sort((first, second) => first.year - second.year);
-			break;
-		case 1:
-			interArray = ArrayOfSort.slice().sort((first, second) => second.year - first.year);
 			break;
 		case 2:
 			sortYear.classList.toggle('option-active');
-			interArray = sortedDesc;
-			offset = 0;
-			sortYearCountTimes = -1;
 			break;
 	}
 	sortYearCountTimes++;
-	updateFilmsList(interArray, 0, interArray.length, 0);
+	updateFilteredFilms();
 });
 sortChar.addEventListener('click', () => {
 	if (checkSlider())
 		return;
 	resetOtherButtons(sortChar, 0, allCountList);
-	interArray = [];
 	switch (sortCharCountTimes) {
 		case 0:
 			sortChar.classList.toggle('option-active');
-			interArray = ArrayOfSort.slice().sort((first, second) => first.title.localeCompare(second.title, 'ru', { sensitivity: 'base' }));
-			break;
-		case 1:
-			interArray = ArrayOfSort.slice().sort((first, second) => second.title.localeCompare(first.title, 'ru', { sensitivity: 'base' }));
 			break;
 		case 2:
 			sortChar.classList.toggle('option-active');
-			interArray = sortedDesc;
-			offset = 0;
-			sortCharCountTimes = -1;
 			break;
 	}
 	sortCharCountTimes++;
-	updateFilmsList(interArray, 0, interArray.length, 0);
+	updateFilteredFilms();
 });
 function resetAllButtons(start, end) {
 	const buttons = [sortLast, sortYear, sortChar];
 	buttons.forEach(button => {
 		button.classList.remove('option-active');
 	});
+	sortLastCountTimes = -1;
 	sortYearCountTimes = 0;
 	sortCharCountTimes = 0;
-	sortLastCountTimes = 0;
-	for (let index = start; index < end; index++) {
-		ArrayOfSort[index - start] = sortedDesc[index];
-	}
 }
 const slider = document.getElementById("slider_rating");
 const resetSlider = document.getElementById("reset_Slider");
@@ -276,17 +319,16 @@ function updateSlider() {
 	resetAllButtons(0, allCountList);
 	resetSlider.style.visibility = 'visible';
 	output.textContent = slider.value;
-	interArray = [];
-	interArray = ArrayOfSort.filter(item => Math.round(item.averagemark) == slider.value).sort((first, second) => Math.round(first.averagemark) - Math.round(second.averagemark));
-	updateFilmsList(interArray, 0, interArray.length, 0);
+	sortSliderCountTimes++;
+	updateFilteredFilms();
 }
 slider.addEventListener('input', updateSlider);
 resetSlider.addEventListener('click', () => {
 	resetSlider.style.visibility = 'hidden';
 	output.textContent = 5;
 	slider.value = 5;
-	let mult = 1;
-	updateFilmsList(sortedDesc, 0, allCountList, 0);
+	sortSliderCountTimes = 0;
+	updateFilteredFilms();
 });
 function updateImages() {
 	images = document.querySelectorAll('.image');
