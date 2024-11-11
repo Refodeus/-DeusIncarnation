@@ -1,0 +1,27 @@
+﻿@page
+@model LoginModel
+@{
+    Layout = "_LayoutLoginAndRegister";
+    ViewData["Title"] = "Вход";
+}
+
+<h1>Вход</h1>
+
+<form method="post">
+    <span asp-validation-for="Input.Email" class="style-validation"></span>
+    <div class="block-entering">
+        <label asp-for="Input.Email"></label>
+        <input asp-for="Input.Email" class="input"/>
+    </div>
+    <span asp-validation-for="Input.Password" class="style-validation"></span>
+    <div class="block-entering">
+        <label asp-for="Input.Password"></label>
+        <input asp-for="Input.Password" type="password" class="input"/>
+    </div>
+    <div class="registration">
+        <button type="submit" class="style-button">Войти</button>
+    </div>
+</form>
+<div class="registration">
+    <a asp-page="/Account/Register">Создать учетную запись</a>
+</div>

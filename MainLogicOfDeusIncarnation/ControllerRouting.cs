@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MainLogicOfDeusIncarnation
 {
+	[Authorize]
 	public class ControllerRouting : Controller
 	{
 		public IActionResult Index()

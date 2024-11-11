@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -50,7 +51,24 @@
                         <a href="@Url.Action("History", "ControllerRouting")" class="style-text style-link">История</a>
                     </li>
                     <li>
-                        <img src="~/Images/settings.svg" class="style-settings" width="30" height="30" alt="настройки" style="filter: invert(1);">
+                        <img src="~/Images/settings.svg" class="style-settings" id="settings" width="30" height="30" alt="настройки" style="filter: invert(1);">
+                        <div class="sidebar" id="sidebar">
+                            <div class="sidebar-grid">
+                                <div class="sidebar-flex">
+                                    <img src="@Url.Action("GenerateImage", "Image", new {nickname = @User.Identity.Name})" alt="User image" />
+                                    <div style="margin-left: 10px;">
+                                        <p class="style-text-description sidebar-block-item_start">@User.Identity.Name</p>
+                                        <p class="style-text mini">@User.FindFirstValue(ClaimTypes.Email)</p>
+                                    </div>
+                                </div>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <form method="post" asp-controller="LogOut" asp-action="Logout" class="sidebar-block-item_center">
+                                        <button type="submit" class="btn btn-primary style-button" style="justify-content: center; margin-top: 10px;">Выйти</button>
+                                    </form>
+                                }
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </nav>  

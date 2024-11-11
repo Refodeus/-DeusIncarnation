@@ -1,0 +1,105 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('cover.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
+        z-index: -1;
+    }
+.conteiner {
+    width: 400px;
+    background-color: #141417;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 30px;
+    align-items: center;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Arial;
+    font-size: 32px;
+    color: white;
+    letter-spacing: 2px;
+    padding: 5px;
+}
+label {
+    flex: 1;
+    padding-right: 10px;
+}
+.registration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.block-entering {
+    background-color: #303030;
+    border-radius: 10px;
+    border-width: 5px;
+    border-color: white;
+    margin-bottom: 10px;
+    padding: 5px 20px 5px;
+    font-family: 'Courier New', Arial;
+    font-size: 18px;
+    color: white;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input {
+    width: 25px;
+    background-color: #252525;
+    border-radius: 10px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-family: 'Courier New', sans-serif;
+    font-size: 16px;
+    color: wheat;
+    flex: 2;
+}
+.style-button {
+    cursor: pointer;
+    margin-bottom: 2px;
+    display: flex;
+    background-color: #252525;
+    color: ghostwhite;
+    border: 2px;
+    width: auto;
+    padding: 10px;
+    margin: 5px;
+    align-items: center;
+    border-radius: 30px;
+    font-family: 'Courier New', sans-serif;
+    font-size: 16px;
+    border-style: bold;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, width 0.3s ease;
+}
+.style-button:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+.style-validation {
+    color: orangered;
+    font-family: 'Courier New', sans-serif;
+    font-size: 12px;
+    border-style: bold;
+}

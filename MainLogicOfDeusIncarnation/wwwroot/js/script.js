@@ -83,3 +83,20 @@ function setupClickEventsCategories(objects, activeClass)
 }
 setupClickEventsCategories('.categories_1 li', 'visible');
 setupClickEventsCategories('.categories_2 li', 'visible');
+
+const icon = document.getElementById('settings');
+const sidebar = document.getElementById('sidebar');
+
+icon.addEventListener('mouseenter', () => {
+	sidebar.style.display = 'block';
+});
+
+sidebar.addEventListener('mouseenter', () => {
+	sidebar.style.display = 'block';
+});
+
+sidebar.addEventListener('mouseleave', () => {
+	setTimeout(() => {
+		sidebar.style.display = 'none';
+	}, 100);
+});
